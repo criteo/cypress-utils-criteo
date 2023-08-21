@@ -1,7 +1,7 @@
 export declare global {
   namespace Cypress {
     interface Chainable {
-      dragAndDrop(droppable: string, index?: number): Chainable<JQuery<HTMLElement>>;
+      dragAndDrop(droppable: Chainable<JQuery<HTMLElement>>): Chainable<JQuery<HTMLElement>>;
 
       findByTestAttr(
         matcher: string,
