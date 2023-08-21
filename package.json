@@ -1,0 +1,40 @@
+{
+  "name": "cypress-utils-criteo",
+  "version": "1.0.0-beta.0",
+  "description": "A set of utils used at Criteo for Cypress",
+  "exports": {
+    "./dist/*": null,
+    "./src/*": null,
+    "./commands": "./dist/commands/index.js",
+    "./commands/*": "./dist/commands/*.js",
+    "./recommended-checks": "./dist/recommended-checks/index.js",
+    "./recommended-checks/*": "./dist/recommended-checks/*.js"
+  },
+  "types": "src/cypress-utils-criteo.d.ts",
+  "scripts": {
+    "build": "tsc --project tsconfig.json",
+    "lint": "prettier --log-level warn --list-different .",
+    "lint:fix": "prettier --log-level warn --write .",
+    "test": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/criteo/cypress-utils-criteo.git"
+  },
+  "keywords": [
+    "cypress",
+    "material",
+    "criteo"
+  ],
+  "author": "Criteos",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/criteo/cypress-utils-criteo/issues"
+  },
+  "homepage": "https://github.com/criteo/cypress-utils-criteo#readme",
+  "devDependencies": {
+    "cypress": "12.17.3",
+    "prettier": "3.0.1",
+    "typescript": "5.1.6"
+  }
+}
