@@ -22,24 +22,34 @@ For **recommended checks**, in `cypress/support/e2e.js`, add:
 
 ## Commands
 
-### `selectors/getByTestAttr`
+### selectors/getByTestAttr
 
-TODO DOC
+Get one or more DOM elements by their `data-test` attribute.
+Internally, it relies on `cy.get`.
 
-### `selectors/findByTestAttr`
+Example: `<input data-test="name-input" />` can be retrieved with `cy.getByTestAttr('name-input')`
 
-TODO DOC
+### selectors/findByTestAttr
 
-### `drag-and-drop/dragAndDrop`
+Get the descendent DOM element(s) by their `data-test` attribute.
+Internally, it relies on `cy.find`.
 
-TODO DOC
+Example: `<div data-test="form-container"><input data-test="name-input" /></div>` can be retrieved with `cy.getByTestAttr('form-container').findByTestAttr('name-input')`
+
+### drag-and-drop/dragAndDrop
+
+Drag and drop an element in another one.
+
+Example: `cy.getByTestAttr('draggable').dragAndDrop(cy.getByTestAttr('droppable'))`
 
 ## Recommended checks
 
-### `no-open-mat-snack-bar`
+### no-open-mat-snack-bar
 
 Ensures there is no remaining snack bar open once a test ends: it could cover some components in the following tests, prevent Cypress from interacting with them, and make the tests fail.
 
 ## Development
 
 Please use Node v16.14.0 and npm v8.3.1
+
+Before submitting a PR, run `npm run build && npm run lint:fix`.
