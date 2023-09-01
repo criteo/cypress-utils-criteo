@@ -4,6 +4,7 @@
     "forceConsistentCasingInFileNames": true,
     "lib": ["es5", "dom"],
     "module": "es2020",
+    "moduleResolution": "node",
     "outDir": "dist",
     "rootDir": "src",
     "skipLibCheck": true,

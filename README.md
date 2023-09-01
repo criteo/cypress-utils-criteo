@@ -42,6 +42,18 @@ Drag and drop an element in another one.
 
 Example: `cy.getByTestAttr('draggable').dragAndDrop(cy.getByTestAttr('droppable'))`
 
+## analytics/checkAnalyticsCall
+
+Checks analytics endpoint was called with expected properties.
+
+Example: 
+``` js
+cy.checkAnalyticsCall({
+    event_type_id: 'EVENT_ID', 
+    extra_property: value
+});
+```
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar
