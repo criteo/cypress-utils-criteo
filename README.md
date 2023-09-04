@@ -46,11 +46,12 @@ Example: `cy.getByTestAttr('draggable').dragAndDrop(cy.getByTestAttr('droppable'
 
 Checks analytics endpoint was called with expected properties.
 
-Example: 
-``` js
+Example:
+
+```js
 cy.checkAnalyticsCall({
-    event_type_id: 'EVENT_ID', 
-    extra_property: value
+  event_type_id: 'EVENT_ID',
+  extra_property: value,
 });
 ```
 
@@ -60,8 +61,9 @@ Dispatch ngxs actions.
 
 Controlling state to achieve the desired setup for your test is a best practice (see the [cypress documentation](https://docs.cypress.io/guides/references/best-practices#Organizing-Tests-Logging-In-Controlling-State)).
 
-Your store must be exposed in the global window of your app to use it: 
-``` typescript
+Your store must be exposed in the global window of your app to use it:
+
+```typescript
 // app.component.ts
 constructor(private readonly store: Store) {
   if ('Cypress' in window) {
