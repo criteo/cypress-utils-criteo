@@ -14,7 +14,7 @@ export declare global {
       ): Chainable<JQuery<HTMLElement>>;
 
       checkAnalyticsCall(analyticsEventProperties: AnalyticsEventProperties): void;
-      
+
       dispatchActions(actions: unknown[]): Chainable<JQuery>;
     }
   }
