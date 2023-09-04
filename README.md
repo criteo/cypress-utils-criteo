@@ -54,6 +54,24 @@ cy.checkAnalyticsCall({
 });
 ```
 
+### state-management/dispatchActions
+
+Dispatch ngxs actions.
+
+Controlling state to achieve the desired setup for your test is a best practice (see the [cypress documentation](https://docs.cypress.io/guides/references/best-practices#Organizing-Tests-Logging-In-Controlling-State)).
+
+Your store must be exposed in the global window of your app to use it: 
+``` typescript
+// app.component.ts
+constructor(private readonly store: Store) {
+  if ('Cypress' in window) {
+    window.store = this.store;
+  }
+}
+```
+
+Example: `cy.dispatchActions([{ type: 'InitData' }])`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar
