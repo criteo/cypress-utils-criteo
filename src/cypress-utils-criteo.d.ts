@@ -12,6 +12,8 @@ export declare global {
         matcher: string,
         options?: Partial<Loggable & Timeoutable & Withinable & Shadow>,
       ): Chainable<JQuery<HTMLElement>>;
+
+      checkAnalyticsCall(analyticsEventProperties: AnalyticsEventProperties): void;
     }
   }
 }
