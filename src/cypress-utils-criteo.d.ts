@@ -16,6 +16,8 @@ export declare global {
       checkAnalyticsCall(analyticsEventProperties: AnalyticsEventProperties): void;
 
       dispatchActions(actions: unknown[]): Chainable<JQuery>;
+
+      logStep(message: string): void;
     }
   }
 }
