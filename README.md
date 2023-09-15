@@ -74,6 +74,13 @@ constructor(private readonly store: Store) {
 
 Example: `cy.dispatchActions([{ type: 'InitData' }])`
 
+### viewport/changeViewport
+
+Set the viewport to the correct resolution
+Internally, it relies on `cy.viewport`.
+
+Example: `cy.changeViewport(ViewportType.Mobile)`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar
