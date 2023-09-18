@@ -47,6 +47,7 @@ Cypress.Commands.add('assertInnerTextContains', (dataTestAttributeName: string, 
 
 /**
  * Assert that the current URL contains specified query parameters.
+ * Internally, it relies on `cy.url`.
  *
  * @param params - An array of query parameters to check in the URL.
  *
