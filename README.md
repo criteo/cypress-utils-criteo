@@ -114,6 +114,13 @@ Internally, it relies on `cy.url`.
 
 Example: `cy.assertUrlParams(['param1=123', 'param2=abc'])`
 
+### actions/clickButton
+
+Clicks on a button element.
+Internally, it relies on `click()`.
+
+Example: `cy.clickButton('data-test-submit-button')`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar

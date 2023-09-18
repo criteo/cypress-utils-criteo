@@ -5,3 +5,4 @@ export * from './state-management';
 export * from './logger';
 export * from './viewport';
 export * from './assertions';
+export * from './actions';
