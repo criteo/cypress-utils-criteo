@@ -28,6 +28,8 @@ export declare global {
       assertInnerTextEquals(dataTestAttributeName: string, expectedText: string): Chainable<JQuery<HTMLElement>>;
 
       assertInnerTextContains(dataTestAttributeName: string, expectedText: string): Chainable<JQuery<HTMLElement>>;
+
+      assertUrlParams(params: string[]): Chainable<string>;
     }
   }
 }
