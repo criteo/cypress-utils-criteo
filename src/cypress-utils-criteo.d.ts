@@ -19,6 +19,8 @@ export declare global {
 
       dispatchActions(actions: unknown[]): Chainable<JQuery>;
 
+      logStep(message: string): void;
+
       changeViewport(type: ViewportType): void;
     }
   }

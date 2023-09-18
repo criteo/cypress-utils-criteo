@@ -74,6 +74,13 @@ constructor(private readonly store: Store) {
 
 Example: `cy.dispatchActions([{ type: 'InitData' }])`
 
+### logger/logStep
+
+Identifies a test step with separator lines before and after.
+Internally, it relies on `cy.log`.
+
+Example: `cy.logStep('Step 1')`
+
 ### viewport/changeViewport
 
 Set the viewport to the correct resolution
