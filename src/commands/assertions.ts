@@ -15,4 +15,19 @@ Cypress.Commands.add('assertSort', (strArray: string[], descending?: boolean) =>
   return cy.wrap(actual).should('deep.equal', expected);
 });
 
+/**
+ * Assert that the inner text of an element matches the expected text after trimming.
+ *
+ * @param dataTestAttributeName - The data-test attribute name to locate the element.
+ * @param expectedText - The expected inner text to compare against.
+ *
+ * @example `cy.assertInnerTextEquals('data-test-button', 'Click me')`
+ * @see https://docs.cypress.io/api/commands/should
+ */
+Cypress.Commands.add('assertInnerTextEquals', (dataTestAttributeName: string, expectedText: string) => {
+  return cy.getByTestAttr(dataTestAttributeName).should((elements) => {
+    expect(elements.get(0).innerText.trim()).to.equal(expectedText.trim());
+  });
+});
+
 export {};
