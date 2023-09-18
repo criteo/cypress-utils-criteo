@@ -88,6 +88,13 @@ Internally, it relies on `cy.viewport`.
 
 Example: `cy.changeViewport(ViewportType.Mobile)`
 
+### assertions/assertSort
+
+Assert that an array is sorted in the correct order, ignoring case.
+Internally, it relies on `cy.should` and deep equality assertion.
+
+Example: `cy.assertSort(['Z', 'Y', 'X'], true)`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar
