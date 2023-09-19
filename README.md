@@ -81,6 +81,13 @@ Internally, it relies on `cy.log`.
 
 Example: `cy.logStep('Step 1')`
 
+### viewport/changeViewport
+
+Set the viewport to the correct resolution
+Internally, it relies on `cy.viewport`.
+
+Example: `cy.changeViewport(ViewportType.Mobile)`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar

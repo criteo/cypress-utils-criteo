@@ -1,3 +1,5 @@
+import { ViewportType } from './models/enums/viewportType';
+
 export declare global {
   namespace Cypress {
     interface Chainable {
@@ -18,6 +20,8 @@ export declare global {
       dispatchActions(actions: unknown[]): Chainable<JQuery>;
 
       logStep(message: string): void;
+
+      changeViewport(type: ViewportType): void;
     }
   }
 }
