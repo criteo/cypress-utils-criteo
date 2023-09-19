@@ -24,6 +24,8 @@ export declare global {
       changeViewport(type: ViewportType): void;
 
       assertSort(strArray: string[], descending?: boolean): Chainable<string[]>;
+
+      assertInnerTextEquals(dataTestAttributeName: string, expectedText: string): Chainable<JQuery<HTMLElement>>;
     }
   }
 }

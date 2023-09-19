@@ -95,6 +95,12 @@ Internally, it relies on `cy.should` and deep equality assertion.
 
 Example: `cy.assertSort(['Z', 'Y', 'X'], true)`
 
+### assertions/assertInnerTextEquals
+
+Assert that the inner text of an element matches the expected text after trimming.
+
+Example: `cy.assertInnerTextEquals('data-test-button', 'Click me')`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar
