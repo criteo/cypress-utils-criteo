@@ -30,4 +30,19 @@ Cypress.Commands.add('assertInnerTextEquals', (dataTestAttributeName: string, ex
   });
 });
 
+/**
+ * Assert that the inner text of an element contains the expected text.
+ *
+ * @param dataTestAttributeName - The data-test attribute name to locate the element.
+ * @param expectedText - The expected text to check for within the inner text.
+ *
+ * @example `cy.assertInnerTextContains('data-test-button', 'Partial text')`
+ * @see https://docs.cypress.io/api/commands/should
+ */
+Cypress.Commands.add('assertInnerTextContains', (dataTestAttributeName: string, expectedText: string) => {
+  return cy.getByTestAttr(dataTestAttributeName).should((elements) => {
+    expect(elements.get(0).innerText).to.contain(expectedText);
+  });
+});
+
 export {};

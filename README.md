@@ -101,6 +101,12 @@ Assert that the inner text of an element matches the expected text after trimmin
 
 Example: `cy.assertInnerTextEquals('data-test-button', 'Click me')`
 
+### assertions/assertInnerTextContains
+
+Assert that the inner text of an element contains the expected text.
+
+Example: `cy.assertInnerTextContains('data-test-button', 'Partial text')`
+
 ## Recommended checks
 
 ### no-open-mat-snack-bar

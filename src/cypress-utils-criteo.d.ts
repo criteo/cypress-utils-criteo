@@ -26,6 +26,8 @@ export declare global {
       assertSort(strArray: string[], descending?: boolean): Chainable<string[]>;
 
       assertInnerTextEquals(dataTestAttributeName: string, expectedText: string): Chainable<JQuery<HTMLElement>>;
+
+      assertInnerTextContains(dataTestAttributeName: string, expectedText: string): Chainable<JQuery<HTMLElement>>;
     }
   }
 }
