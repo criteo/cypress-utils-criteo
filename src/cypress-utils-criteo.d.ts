@@ -22,6 +22,8 @@ export declare global {
       logStep(message: string): void;
 
       changeViewport(type: ViewportType): void;
+
+      assertSort(strArray: string[], descending?: boolean): Chainable<string[]>;
     }
   }
 }

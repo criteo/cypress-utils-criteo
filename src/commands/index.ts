@@ -4,3 +4,4 @@ export * from './selectors';
 export * from './state-management';
 export * from './logger';
 export * from './viewport';
+export * from './assertions';
