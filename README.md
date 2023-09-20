@@ -109,6 +109,7 @@ Example: `cy.assertInnerTextContains('data-test-button', 'Partial text')`
 
 ### assertions/assertUrlParams
 
+
 Assert that the current URL contains the specified query parameters.
 Internally, it relies on `cy.url`.
 
