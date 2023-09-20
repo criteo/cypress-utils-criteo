@@ -45,4 +45,21 @@ Cypress.Commands.add('assertInnerTextContains', (dataTestAttributeName: string, 
   });
 });
 
+/**
+ * Assert that the current URL contains specified query parameters.
+ * Internally, it relies on `cy.url`.
+ *
+ * @param params - An array of query parameters to check in the URL.
+ *
+ * @example `cy.assertUrlParams(['param1=123', 'param2=abc'])`
+ * @see https://docs.cypress.io/api/commands/url
+ */
+Cypress.Commands.add('assertUrlParams', (params: string[]) => {
+  return cy.url().then((url) => {
+    params.forEach((param) => {
+      expect(url).to.include(param);
+    });
+  });
+});
+
 export {};
