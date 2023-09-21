@@ -51,4 +51,4 @@ function stringifyJson(object: unknown) {
   return JSON.stringify(object, null, 2);
 }
 
-export { setAnalyticsPropertiesToIgnore };
+export { AnalyticsEventProperties, setAnalyticsPropertiesToIgnore };
