@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "declaration": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "lib": ["es5", "dom"],
@@ -8,6 +9,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "skipLibCheck": true,
+    "sourceMap": true,
     "strict": true,
     "target": "es2016",
     "types": ["cypress", "node"]
