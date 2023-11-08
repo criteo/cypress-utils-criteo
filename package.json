@@ -8,7 +8,9 @@
     "./commands": "./dist/commands/index.js",
     "./commands/*": "./dist/commands/*.js",
     "./recommended-checks": "./dist/recommended-checks/index.js",
-    "./recommended-checks/*": "./dist/recommended-checks/*.js"
+    "./recommended-checks/*": "./dist/recommended-checks/*.js",
+    "./material-interactions": "./dist/material-interactions/index.js",
+    "./material-interactions/*": "./dist/material-interactions/*.js"
   },
   "types": "src/cypress-utils-criteo.d.ts",
   "scripts": {

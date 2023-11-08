@@ -42,7 +42,7 @@ Drag and drop an element in another one.
 
 Example: `cy.getByTestAttr('draggable').dragAndDrop(cy.getByTestAttr('droppable'))`
 
-## analytics/checkAnalyticsCall
+### analytics/checkAnalyticsCall
 
 Checks analytics endpoint was called with expected properties.
 
@@ -119,6 +119,12 @@ Example: `cy.assertUrlParams(['param1=123', 'param2=abc'])`
 ### no-open-mat-snack-bar
 
 Ensures there is no remaining snack bar open once a test ends: it could cover some components in the following tests, prevent Cypress from interacting with them, and make the tests fail.
+
+## Material interactions
+
+### Snackbar
+
+Allows to easily check the status of a snackbar
 
 ## Development
 
