@@ -124,7 +124,11 @@ Ensures there is no remaining snack bar open once a test ends: it could cover so
 
 ### Snackbar
 
-Allows to easily check the status of a snackbar
+Allows to easily check the status of a snackbar.
+
+### Tooltip
+
+Allows to easily check whether a tooltip contains a text.
 
 ## Development
 
