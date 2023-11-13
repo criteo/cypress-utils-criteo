@@ -1,2 +1,2 @@
-import './snackbar';
-import './tooltip';
+export * from './snackbar';
+export * from './tooltip';
