@@ -6,5 +6,7 @@ export class Tooltip {
     for (const text of texts) {
       cy.get('.mat-tooltip').should('contain', text);
     }
+
+    element.trigger('mouseleave');
   }
 }
