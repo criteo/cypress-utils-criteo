@@ -122,13 +122,23 @@ Ensures there is no remaining snack bar open once a test ends: it could cover so
 
 ## Material interactions
 
+### Overlay
+
+Allows to close overlays (used for dropdowns, selects, dialogs, ...).
+
+Example: `Overlay.close()`
+
 ### Snackbar
 
-Allows to easily check the status of a snackbar.
+Allows to easily check the status of a snackbar. The snackbar is closed automatically.
+
+Example: `Snackbar.successShouldBeVisible()` or `Snackbar.errorShouldBeVisible()`
 
 ### Tooltip
 
-Allows to easily check whether a tooltip contains a text.
+Allows to easily check whether a tooltip exists and contains some texts (optional).
+
+Example: `Tooltip.shouldExist(cy.getByTestAttr('help-icon'), ['The tooltip should contain this text.', 'It should also contain this one.'])`
 
 ## Development
 
