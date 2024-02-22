@@ -26,26 +26,28 @@ Cypress.Commands.add('dragAndDrop', { prevSubject: 'element' }, (draggable, drop
       return cy.wrap(draggable);
     })
     .then(([draggable]) => {
-      draggable.dispatchEvent(new MouseEvent('mousedown', { buttons: 1, bubbles: true }));
+      draggable.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, buttons: 1, composed: true }));
 
       draggable.dispatchEvent(
         new MouseEvent('mousemove', {
+          bubbles: true,
           clientX: 0,
           clientY: 10,
-          bubbles: true,
+          composed: true,
         }),
       );
 
       draggable.dispatchEvent(
         new MouseEvent('mousemove', {
-          buttons: 1,
           bubbles: true,
+          buttons: 1,
           clientX: dragToX,
           clientY: dragToY,
+          composed: true,
         }),
       );
 
-      draggable.dispatchEvent(new MouseEvent('mouseup'));
+      draggable.dispatchEvent(new MouseEvent('mouseup', { composed: true }));
     });
 });
 
