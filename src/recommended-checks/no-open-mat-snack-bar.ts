@@ -3,7 +3,7 @@
  * in the following tests, prevent Cypress from interacting with them, and make the tests fail.
  */
 
-const checkSnackbar = () => cy.get('.mat-snack-bar-container').should('not.exist');
+const checkSnackbar = () => cy.get('.mat-mdc-snack-bar-container').should('not.exist');
 
 beforeEach(checkSnackbar);
 afterEach(checkSnackbar);
