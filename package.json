@@ -1,6 +1,6 @@
 {
   "name": "cypress-utils-criteo",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "A set of utils used at Criteo for Cypress",
   "exports": {
     "./dist/*": null,
