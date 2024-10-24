@@ -1,18 +1,20 @@
 {
   "name": "cypress-utils-criteo",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A set of utils used at Criteo for Cypress",
   "exports": {
+    "./*": "./dist/*",
     "./dist/*": null,
-    "./src/*": null,
-    "./commands": "./dist/commands/index.js",
-    "./commands/*": "./dist/commands/*.js",
-    "./recommended-checks": "./dist/recommended-checks/index.js",
-    "./recommended-checks/*": "./dist/recommended-checks/*.js",
-    "./material-interactions": "./dist/material-interactions/index.js",
-    "./material-interactions/*": "./dist/material-interactions/*.js"
+    "./src/*": null
   },
-  "types": "src/cypress-utils-criteo.d.ts",
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*/index.d.ts",
+        "src/cypress-utils-criteo.d.ts"
+      ]
+    }
+  },
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --list-different .",
