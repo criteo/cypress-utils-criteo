@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>cypress-utils-criteo smoke app</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 24px;
+      }
+
+      .mat-mdc-snack-bar-container {
+        border: 1px solid #222;
+        display: inline-flex;
+        gap: 8px;
+        margin-top: 16px;
+        padding: 12px;
+      }
+
+      .mdc-tooltip__surface {
+        background: #222;
+        color: #fff;
+        margin-top: 8px;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <main data-test="smoke-root">
+      <div data-test="form-container">
+        <input data-test="name-input" value="Jane Doe" />
+      </div>
+
+      <button data-test="message-button">Click me</button>
+      <button data-test="open-overlay" type="button">Open overlay</button>
+      <button data-test="show-snackbar" type="button">Show snackbar</button>
+      <button data-test="help-icon" type="button">Help</button>
+      <div data-test="overlay-status">open</div>
+    </main>
+
+    <script>
+      window.store = {
+        dispatch(actions) {
+          window.dispatchedActions = actions;
+          return actions;
+        },
+      };
+
+      window['generic-shell-debug-context'] = {
+        analyticsEvents: [
+          {
+            properties: {
+              event_type_id: 'EVENT_ID',
+              extra_property: 'expected-value',
+              ignored_property: 'ignored-value',
+            },
+          },
+        ],
+      };
+
+      const overlayStatus = document.querySelector('[data-test="overlay-status"]');
+      const openOverlayButton = document.querySelector('[data-test="open-overlay"]');
+      const showSnackbarButton = document.querySelector('[data-test="show-snackbar"]');
+      const helpIconButton = document.querySelector('[data-test="help-icon"]');
+
+      function closeOverlay() {
+        const overlay = document.querySelector('.cdk-overlay-backdrop-showing');
+
+        if (!overlay) {
+          return;
+        }
+
+        overlay.remove();
+        overlayStatus.textContent = 'closed';
+      }
+
+      openOverlayButton.addEventListener('click', () => {
+        const existingOverlay = document.querySelector('.cdk-overlay-backdrop-showing');
+
+        if (existingOverlay) {
+          existingOverlay.remove();
+        }
+
+        overlayStatus.textContent = 'open';
+
+        const overlay = document.createElement('button');
+        overlay.className = 'cdk-overlay-backdrop-showing';
+        overlay.type = 'button';
+        overlay.textContent = 'Overlay backdrop';
+        overlay.addEventListener('click', closeOverlay);
+        document.body.appendChild(overlay);
+      });
+
+      showSnackbarButton.addEventListener('click', () => {
+        const existingSnackBar = document.querySelector('.mat-mdc-snack-bar-container');
+
+        if (existingSnackBar) {
+          existingSnackBar.remove();
+        }
+
+        const snackBar = document.createElement('div');
+        snackBar.className = 'mat-mdc-snack-bar-container success';
+
+        const message = document.createElement('span');
+        message.textContent = 'Saved successfully';
+        snackBar.appendChild(message);
+
+        const closeButton = document.createElement('button');
+        closeButton.type = 'button';
+        closeButton.textContent = 'close';
+        closeButton.addEventListener('click', () => {
+          snackBar.remove();
+        });
+        snackBar.appendChild(closeButton);
+
+        document.body.appendChild(snackBar);
+      });
+
+      helpIconButton.addEventListener('mouseenter', () => {
+        const existingTooltip = document.querySelector('.mdc-tooltip__surface');
+
+        if (existingTooltip) {
+          existingTooltip.remove();
+        }
+
+        const tooltip = document.createElement('div');
+        tooltip.className = 'mdc-tooltip__surface';
+        tooltip.textContent = 'Tooltip text Additional tooltip text';
+        document.body.appendChild(tooltip);
+      });
+
+      helpIconButton.addEventListener('mouseleave', () => {
+        const tooltip = document.querySelector('.mdc-tooltip__surface');
+
+        if (tooltip) {
+          tooltip.remove();
+        }
+      });
+    </script>
+  </body>
+</html>

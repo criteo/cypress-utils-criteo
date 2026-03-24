@@ -1,25 +1,101 @@
 {
   "name": "cypress-utils-criteo",
   "version": "2.0.2",
-  "description": "A set of utils used at Criteo for Cypress",
+  "description": "Cypress commands, Angular Material helpers, and recommended checks used at Criteo",
+  "type": "module",
+  "main": "./dist/commands/index.js",
+  "types": "./dist/commands/index.d.ts",
   "exports": {
-    "./*": "./dist/*",
-    "./dist/*": null,
-    "./src/*": null
+    ".": {
+      "types": "./dist/commands/index.d.ts",
+      "default": "./dist/commands/index.js"
+    },
+    "./commands": {
+      "types": "./dist/commands/index.d.ts",
+      "default": "./dist/commands/index.js"
+    },
+    "./commands/*": {
+      "types": "./dist/commands/*.d.ts",
+      "default": "./dist/commands/*.js"
+    },
+    "./commands/*.js": {
+      "types": "./dist/commands/*.d.ts",
+      "default": "./dist/commands/*.js"
+    },
+    "./material-interactions": {
+      "types": "./dist/material-interactions/index.d.ts",
+      "default": "./dist/material-interactions/index.js"
+    },
+    "./material-interactions/*": {
+      "types": "./dist/material-interactions/*.d.ts",
+      "default": "./dist/material-interactions/*.js"
+    },
+    "./material-interactions/*.js": {
+      "types": "./dist/material-interactions/*.d.ts",
+      "default": "./dist/material-interactions/*.js"
+    },
+    "./recommended-checks": {
+      "types": "./dist/recommended-checks/index.d.ts",
+      "default": "./dist/recommended-checks/index.js"
+    },
+    "./recommended-checks/*": {
+      "types": "./dist/recommended-checks/*.d.ts",
+      "default": "./dist/recommended-checks/*.js"
+    },
+    "./recommended-checks/*.js": {
+      "types": "./dist/recommended-checks/*.d.ts",
+      "default": "./dist/recommended-checks/*.js"
+    },
+    "./package.json": "./package.json"
   },
   "typesVersions": {
     "*": {
-      "*": [
-        "dist/*/index.d.ts",
-        "src/cypress-utils-criteo.d.ts"
+      "commands": [
+        "dist/commands/index.d.ts"
+      ],
+      "commands/*": [
+        "dist/commands/*.d.ts"
+      ],
+      "commands/*.js": [
+        "dist/commands/*.d.ts"
+      ],
+      "material-interactions": [
+        "dist/material-interactions/index.d.ts"
+      ],
+      "material-interactions/*": [
+        "dist/material-interactions/*.d.ts"
+      ],
+      "material-interactions/*.js": [
+        "dist/material-interactions/*.d.ts"
+      ],
+      "recommended-checks": [
+        "dist/recommended-checks/index.d.ts"
+      ],
+      "recommended-checks/*": [
+        "dist/recommended-checks/*.d.ts"
+      ],
+      "recommended-checks/*.js": [
+        "dist/recommended-checks/*.d.ts"
       ]
     }
   },
+  "files": [
+    "dist",
+    "src/cypress-utils-criteo.d.ts",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "./dist/commands/*.js",
+    "./dist/recommended-checks/*.js"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.json",
     "lint": "prettier --list-different .",
     "lint:fix": "prettier --write .",
-    "test": "npm run lint"
+    "test:prepare": "node ./scripts/prepare-test-app.mjs",
+    "test:typecheck": "npm run build && npm run test:prepare && npx tsc -p test-app/tsconfig.typecheck.json --noEmit && npx tsc -p test-app/tsconfig.legacy-node.json --noEmit",
+    "test": "npm run test:typecheck && npm run lint && npm run build && npm run test:prepare && npx cypress run --project test-app --browser electron"
   },
   "repository": {
     "type": "git",
@@ -36,13 +112,17 @@
     "url": "https://github.com/criteo/cypress-utils-criteo/issues"
   },
   "homepage": "https://github.com/criteo/cypress-utils-criteo#readme",
+  "engines": {
+    "node": ">=20.1.0"
+  },
   "dependencies": {
     "lodash": "^4.17.21"
   },
   "devDependencies": {
-    "@types/lodash": "4.14.168",
-    "cypress": "12.17.3",
-    "prettier": "3.0.1",
-    "typescript": "5.1.6"
+    "@types/lodash": "^4.17.24",
+    "@types/node": "^20.15.0",
+    "cypress": "^15.12.0",
+    "prettier": "^3.8.1",
+    "typescript": "^5.9.3"
   }
 }

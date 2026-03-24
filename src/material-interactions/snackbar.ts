@@ -1,9 +1,18 @@
+/**
+ * Helpers for asserting Angular Material snack bars.
+ */
 export class Snackbar {
+  /**
+   * Asserts that a success snack bar is visible, then closes it.
+   */
   static successShouldBeVisible(): void {
     cy.get('.mat-mdc-snack-bar-container.success').should('be.visible');
     this.close();
   }
 
+  /**
+   * Asserts that an error snack bar is visible, then closes it.
+   */
   static errorShouldBeVisible(): void {
     cy.get('.mat-mdc-snack-bar-container.error').should('be.visible');
     this.close();

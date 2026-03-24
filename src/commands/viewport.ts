@@ -1,10 +1,16 @@
 const MAX_ANIMATION_TIME = 250;
 
+/**
+ * Width and height used by a predefined viewport preset.
+ */
 interface ViewportDimensions {
   width: number;
   height: number;
 }
 
+/**
+ * Predefined viewport presets used by `cy.changeViewport()`.
+ */
 enum ViewportType {
   Mobile = 'mobile',
   Tablet = 'tablet',
@@ -33,4 +39,5 @@ Cypress.Commands.add('changeViewport', (type: ViewportType) => {
   cy.wait(MAX_ANIMATION_TIME);
 });
 
-export { ViewportType, ViewportDimensions };
+export { ViewportType };
+export type { ViewportDimensions };

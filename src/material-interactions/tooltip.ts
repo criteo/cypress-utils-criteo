@@ -1,4 +1,10 @@
+/**
+ * Helpers for asserting Angular Material tooltips.
+ */
 export class Tooltip {
+  /**
+   * Triggers the tooltip, asserts it exists, and optionally checks its text content.
+   */
   static shouldExist(element: Cypress.Chainable<JQuery<HTMLElement>>, texts: string[] = []): void {
     element.trigger('mouseenter');
     cy.get('.mdc-tooltip__surface').should('exist');

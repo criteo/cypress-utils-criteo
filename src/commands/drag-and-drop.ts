@@ -10,6 +10,10 @@ Cypress.Commands.add('dragAndDrop', { prevSubject: 'element' }, (draggable, drop
 
   return droppable
     .then(([drop]) => {
+      if (!drop) {
+        throw new Error('dragAndDrop requires a target element');
+      }
+
       dropCoords = drop.getBoundingClientRect();
 
       return cy.window();
@@ -26,6 +30,10 @@ Cypress.Commands.add('dragAndDrop', { prevSubject: 'element' }, (draggable, drop
       return cy.wrap(draggable);
     })
     .then(([draggable]) => {
+      if (!draggable) {
+        throw new Error('dragAndDrop requires a draggable element');
+      }
+
       draggable.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, buttons: 1, composed: true }));
 
       draggable.dispatchEvent(

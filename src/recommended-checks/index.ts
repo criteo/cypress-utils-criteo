@@ -1,1 +1,1 @@
-import './no-open-mat-snack-bar';
+import './no-open-mat-snack-bar.js';

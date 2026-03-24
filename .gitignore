@@ -1,2 +1,8 @@
 dist
 node_modules
+test-app/.artifacts
+test-app/node_modules
+test-app/cypress/screenshots
+test-app/cypress/videos
+
+.idea

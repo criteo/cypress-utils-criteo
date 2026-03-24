@@ -1,13 +1,23 @@
 import { omit, isEqual, pull } from 'lodash';
 
-declare type AnalyticsEventProperties = Partial<Record<string, unknown>>;
+/**
+ * Properties expected on an analytics event when using `cy.checkAnalyticsCall()`.
+ */
+type AnalyticsEventProperties = Partial<Record<string, unknown>>;
 
-interface Event {
-  properties: string[];
+interface AnalyticsEvent {
+  properties: AnalyticsEventProperties;
 }
 
 let analyticsPropertiesIgnored: string[] = [];
 
+/**
+ * Ignores analytics event properties before comparing them in `cy.checkAnalyticsCall()`.
+ *
+ * This is useful for volatile fields such as timestamps or generated identifiers.
+ *
+ * @example `setAnalyticsPropertiesToIgnore('timestamp', 'request_id')`
+ */
 function setAnalyticsPropertiesToIgnore(...properties: string[]) {
   analyticsPropertiesIgnored = [...properties];
 }
@@ -22,11 +32,11 @@ function setAnalyticsPropertiesToIgnore(...properties: string[]) {
  */
 Cypress.Commands.add('checkAnalyticsCall', (analyticsEventProperties: AnalyticsEventProperties) => {
   cy.log('Expect analytics event to be sent:', analyticsEventProperties);
-  let matchingEvent: Event;
+  let matchingEvent: AnalyticsEvent | undefined;
   return cy
     .window({ log: false })
     .its('generic-shell-debug-context.analyticsEvents', { log: false })
-    .should((events) => {
+    .should((events: AnalyticsEvent[]) => {
       const eventsProperties = cleanAnalytics(events);
       const matchingEventIndex = eventsProperties.findIndex((event) => isEqual(event, analyticsEventProperties));
 
@@ -40,10 +50,16 @@ Cypress.Commands.add('checkAnalyticsCall', (analyticsEventProperties: AnalyticsE
         matchingEvent = events[matchingEventIndex];
       }
     })
-    .then((events) => pull(events, matchingEvent));
+    .then((events: AnalyticsEvent[]) => {
+      if (!matchingEvent) {
+        throw new Error(`Expected analytics event ${stringifyJson(analyticsEventProperties)} to be captured`);
+      }
+
+      return pull(events, matchingEvent);
+    });
 });
 
-function cleanAnalytics(events: Event[]) {
+function cleanAnalytics(events: AnalyticsEvent[]) {
   return events.map((event) => event.properties).map((properties) => omit(properties, analyticsPropertiesIgnored));
 }
 
@@ -51,4 +67,5 @@ function stringifyJson(object: unknown) {
   return JSON.stringify(object, null, 2);
 }
 
-export { AnalyticsEventProperties, setAnalyticsPropertiesToIgnore };
+export { setAnalyticsPropertiesToIgnore };
+export type { AnalyticsEventProperties };

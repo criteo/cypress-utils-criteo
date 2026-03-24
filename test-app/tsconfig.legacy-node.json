@@ -1,0 +1,9 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "consumer-types.ts",
+    "cypress/**/*.ts",
+    "cypress.config.ts",
+    "node_modules/cypress-utils-criteo/src/cypress-utils-criteo.d.ts"
+  ]
+}

@@ -14,7 +14,7 @@ Cypress.Commands.add('getByTestAttr', { prevSubject: 'optional' }, (subject, att
 );
 
 /**
- * Get the descendent DOM element(s) by their `data-test` attribute.
+ * Get the descendant DOM element(s) by their `data-test` attribute.
  * Internally, it relies on `cy.find`.
  *
  * @example `<div data-test="form-container"><input data-test="name-input" /></div>` can be retrieved with `cy.getByTestAttr('form-container').findByTestAttr('name-input')`

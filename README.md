@@ -1,24 +1,29 @@
 # cypress-utils-criteo
 
-This package offers custom Cypress commands, recommended checks, and Angular Material selectors to ease the development of Cypress tests.
+This package provides custom Cypress commands, recommended checks, and Angular Material interaction helpers used at Criteo.
 
 ## Usage
 
-Install this package `npm install cypress-utils-criteo --save-dev`
+Install this package with `npm install --save-dev cypress-utils-criteo`.
 
-If you use Typescript: in the `tsconfig.json` file used by Cypress add the types definition: `"types": ["cypress", "cypress-utils-criteo"]` (under `compilerOptions`)
+Prefer the extensionless import paths documented below, such as `cypress-utils-criteo/commands`.
+Compatibility paths ending with `/index.js` are still supported, but they are not the recommended style for new code.
 
 Depending on what you want to use:
 
-For **commands**, in `cypress/support/commands.js`, add:
+For **commands**, import them once from your Cypress support file such as `cypress/support/e2e.ts`:
 
 - `import 'cypress-utils-criteo/commands';` to import all exposed commands
 - `import 'cypress-utils-criteo/commands/selectors';` to import specific ones
 
-For **recommended checks**, in `cypress/support/e2e.js`, add:
+For **recommended checks**, import them from the same support file:
 
 - `import 'cypress-utils-criteo/recommended-checks';` to import all recommended checks
 - `import 'cypress-utils-criteo/recommended-checks/no-open-mat-snack-bar';` to import specific ones
+
+For **material interactions**, import the helpers where you use them:
+
+- `import { Overlay, Snackbar, Tooltip } from 'cypress-utils-criteo/material-interactions';`
 
 ## Commands
 
@@ -31,7 +36,7 @@ Example: `<input data-test="name-input" />` can be retrieved with `cy.getByTestA
 
 ### selectors/findByTestAttr
 
-Get the descendent DOM element(s) by their `data-test` attribute.
+Get the descendant DOM element(s) by their `data-test` attribute.
 Internally, it relies on `cy.find`.
 
 Example: `<div data-test="form-container"><input data-test="name-input" /></div>` can be retrieved with `cy.getByTestAttr('form-container').findByTestAttr('name-input')`
@@ -46,24 +51,34 @@ Example: `cy.getByTestAttr('draggable').dragAndDrop(cy.getByTestAttr('droppable'
 
 Checks analytics endpoint was called with expected properties.
 
+Use `setAnalyticsPropertiesToIgnore()` to ignore volatile properties, such as timestamps or generated identifiers, before the comparison.
+
 Example:
 
 ```js
 cy.checkAnalyticsCall({
   event_type_id: 'EVENT_ID',
-  extra_property: value,
+  extra_property: 'expected value',
 });
+```
+
+Example with ignored properties:
+
+```ts
+import { setAnalyticsPropertiesToIgnore } from 'cypress-utils-criteo/commands/analytics';
+
+setAnalyticsPropertiesToIgnore('timestamp', 'request_id');
 ```
 
 ### state-management/dispatchActions
 
-Dispatch ngxs actions.
+Dispatch NGXS actions through the application store exposed on `window.store`.
 
 Controlling state to achieve the desired setup for your test is a best practice (see the [cypress documentation](https://docs.cypress.io/guides/references/best-practices#Organizing-Tests-Logging-In-Controlling-State)).
 
 Your store must be exposed in the global window of your app to use it:
 
-```typescript
+```ts
 // app.component.ts
 constructor(private readonly store: Store) {
   if ('Cypress' in window) {
@@ -83,17 +98,31 @@ Example: `cy.logStep('Step 1')`
 
 ### viewport/changeViewport
 
-Set the viewport to the correct resolution
+Set the viewport to one of the predefined resolutions used by Criteo apps.
 Internally, it relies on `cy.viewport`.
 
-Example: `cy.changeViewport(ViewportType.Mobile)`
+Available presets:
+
+- `ViewportType.Mobile`: `375 x 667`
+- `ViewportType.Tablet`: `768 x 1024`
+- `ViewportType.FlexLayoutMedium`: `1024 x 768`
+- `ViewportType.FlexLayoutLarge`: `1280 x 768`
+- `ViewportType.HdDesktop`: `1920 x 1024`
+
+Example:
+
+```ts
+import { ViewportType } from 'cypress-utils-criteo/commands/viewport';
+
+cy.changeViewport(ViewportType.Mobile);
+```
 
 ### assertions/assertSort
 
-Assert that an array is sorted in the correct order, ignoring case.
+Assert that an array is already sorted in the correct order, ignoring case.
 Internally, it relies on `cy.should` and deep equality assertion.
 
-Example: `cy.assertSort(['Z', 'Y', 'X'], true)`
+Example: `cy.assertSort(['A', 'b', 'c'])`
 
 ### assertions/assertInnerTextEquals
 
@@ -142,6 +171,6 @@ Example: `Tooltip.shouldExist(cy.getByTestAttr('help-icon'), ['The tooltip shoul
 
 ## Development
 
-Please use Node v16.14.0 and npm v8.3.1
+Use Node 20.1+.
 
-Before submitting a PR, run `npm run build && npm run lint:fix`.
+Before submitting a PR, run `npm run lint:fix` and `npm test`.

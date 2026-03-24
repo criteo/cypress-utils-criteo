@@ -1,3 +1,3 @@
-export * from './overlay';
-export * from './snackbar';
-export * from './tooltip';
+export * from './overlay.js';
+export * from './snackbar.js';
+export * from './tooltip.js';
