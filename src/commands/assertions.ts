@@ -7,7 +7,7 @@
  */
 Cypress.Commands.add('assertSort', (strArray: string[], descending?: boolean) => {
   const actual = strArray.slice();
-  const expected = strArray.sort((a, b) => a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase()));
+  const expected = strArray.slice().sort((a, b) => a.toLocaleLowerCase().localeCompare(b.toLocaleLowerCase()));
   if (descending) {
     expected.reverse();
   }
