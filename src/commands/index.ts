@@ -1,3 +1,5 @@
+/// <reference path="../../src/cypress-utils-criteo.d.ts" />
+
 export * from './analytics';
 export * from './drag-and-drop';
 export * from './selectors';
