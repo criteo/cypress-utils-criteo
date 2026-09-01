@@ -34,7 +34,7 @@ Cypress.Commands.add('dragAndDrop', { prevSubject: 'element' }, (draggable, drop
         throw new Error('dragAndDrop requires a draggable element');
       }
 
-      draggable.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, buttons: 1, composed: true }));
+      draggable.dispatchEvent(new MouseEvent('mousedown', { bubbles: true, buttons: 1, composed: true, detail: 1 }));
 
       draggable.dispatchEvent(
         new MouseEvent('mousemove', {
